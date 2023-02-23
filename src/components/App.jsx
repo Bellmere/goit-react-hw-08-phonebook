@@ -1,14 +1,13 @@
 import { Layout } from "components/Layout";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import 'react-toastify/dist/ReactToastify.css';
 import { refreshUser } from "Redux/auth/operations";
 import { useAuth } from "hooks/useAuth";
 import { Loader } from "./Loader/Loader";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
