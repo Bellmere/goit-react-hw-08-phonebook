@@ -1,6 +1,6 @@
-import { delContact } from 'Redux/operations';
+import { delContact } from 'Redux/Contacts/operations';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilter, getContacts } from 'Redux/Selectors';
+import { getFilter, getContacts } from 'Redux/Contacts/Selectors';
 import { Loader } from 'components/Loader/Loader';
 import { useState } from 'react';
 import css from '../ContactList/ContactList.module.css';

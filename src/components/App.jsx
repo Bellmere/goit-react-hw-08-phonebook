@@ -1,56 +1,51 @@
-
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { Filter } from './Filter/Filter';
+import { Layout } from "components/Layout";
+import { lazy } from "react";
+import { Route, Routes } from "react-router";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getIsLoading, getError } from "Redux/Selectors";
-import { fetchContacts } from "Redux/operations";
-import { Loader } from "./Loader/Loader";
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { refreshUser } from "Redux/auth/operations";
+import { useAuth } from "hooks/useAuth";
+import { Loader } from "./Loader/Loader";
+import { RestrictedRoute } from "./RestrictedRoute";
+import { PrivateRoute } from "./PrivateRoute";
+
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const ContactsPage = lazy(() => import('../pages/Contacts'));
 
 
 export const App = () => {
-
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 20,
-        color: '#010101',
-      }}
-    >
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      {isLoading && !error && <Loader/>}
-      <ContactList />
-      <ToastContainer 
-        position="top-right"
-        autoClose={500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </div>
-  );
-}
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+      <Routes>
+      <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />}></Route>
+          <Route 
+          path="/register" 
+          element={<RestrictedRoute component={RegisterPage} redirectTo='/contacts' />}
+          >
+          </Route>
+          <Route 
+          path="/login" 
+          element={<RestrictedRoute component={LoginPage} redirectTo='/contacts' />}
+          >
+          </Route>
+          <Route 
+          path="/contacts" 
+          element={<PrivateRoute component={ContactsPage} redirectTo='/login' />}
+          >
+          </Route>
+      </Route>
+    </Routes>
+    );
+};

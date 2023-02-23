@@ -1,8 +1,8 @@
 import css from '../Filter/Filter.module.css';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { change } from 'Redux/filterSlice';
-import { getFilter } from 'Redux/Selectors';
+import { change } from 'Redux/Contacts/filterSlice';
+import { getFilter } from 'Redux/Contacts/Selectors';
 
 const filterInputId = nanoid();
 

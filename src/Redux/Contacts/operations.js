@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://63efcac8271439b7fe764fad.mockapi.io';
+// https://connections-api.herokuapp.com
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -43,7 +45,7 @@ export const toggleCompleted = createAsyncThunk(
   'contacts/toggleCompleted',
   async (contact, thunkAPI) => {
     try {
-      const response = await axios.put(`/contacts/${contact.id}`, {
+      const response = await axios.patch(`/contacts/${contact.id}`, {
         completed: !contact.completed,
       });
       return response.data;

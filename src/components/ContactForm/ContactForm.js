@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact } from 'Redux/operations';
-import { getContacts } from 'Redux/Selectors';
+import { addContact } from 'Redux/Contacts/operations';
+import { getContacts } from 'Redux/Contacts/Selectors';
 import css from '../ContactForm/ContactForm.module.css';
 import { Loader } from 'components/Loader/Loader';
 
