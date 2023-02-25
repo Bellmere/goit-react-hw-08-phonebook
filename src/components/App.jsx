@@ -1,13 +1,13 @@
-import { Layout } from "components/Layout";
+import React from "react";
 import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { useDispatch } from "react-redux";
+import { Layout } from "components/Layout";
 import { refreshUser } from "Redux/auth/operations";
 import { useAuth } from "hooks/useAuth";
 import { Loader } from "./Loader/Loader";
 import { RestrictedRoute } from "./RestrictedRoute";
 import { PrivateRoute } from "./PrivateRoute";
-import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
@@ -27,24 +27,21 @@ export const App = () => {
     <Loader />
   ) : (
       <Routes>
-      <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />}></Route>
-          <Route 
-          path="/register" 
-          element={<RestrictedRoute component={RegisterPage} redirectTo='/contacts' />}
-          >
-          </Route>
-          <Route 
-          path="/login" 
-          element={<RestrictedRoute component={LoginPage} redirectTo='/contacts' />}
-          >
-          </Route>
-          <Route 
-          path="/contacts" 
-          element={<PrivateRoute component={ContactsPage} redirectTo='/login' />}
-          >
-          </Route>
-      </Route>
+        <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route 
+              path="register"
+              element={<RestrictedRoute component={<RegisterPage />} redirectTo='/contacts' />}
+            />
+            <Route 
+              path="login" 
+              element={<RestrictedRoute component={<LoginPage />} redirectTo='/contacts' />}
+            />
+            <Route 
+              path="contacts" 
+              element={<PrivateRoute component={<ContactsPage />} redirectTo='/login' />}
+            />
+        </Route>
     </Routes>
     );
 };

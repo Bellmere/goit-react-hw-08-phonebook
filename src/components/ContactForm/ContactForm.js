@@ -44,7 +44,7 @@ export const ContactForm = () => {
       return;
     }
     try {
-      await dispatch(addContact({ name: name, phone: number }));
+      await dispatch(addContact({ name: name, number: number }));
       reset();
     } catch (error) {
       console.log(error);

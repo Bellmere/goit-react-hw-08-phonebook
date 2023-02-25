@@ -16,6 +16,7 @@ const getNormalizedContacts = (contacts, filter) => {
 };
 
 
+
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
@@ -40,7 +41,7 @@ export const ContactList = () => {
                 {normalizedContacts.map((contact, id) => (
                     <li key={id} className={css.contact__list__item}>
                         <span>{contact.name} :</span>
-                        <span>{contact.phone}</span>
+                        <span>{contact.number}</span>
                         <button
                         className={css.contact__list__btn} 
                         onClick={() => handleDelete(contact.id)}
