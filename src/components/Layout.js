@@ -11,7 +11,18 @@ export const Layout = () => {
             <Suspense fallback={null}>
                 <Outlet />
             </Suspense>
-            <ToastContainer position="top-right" reverseOrder={false} />
+            <ToastContainer 
+                position="top-right"
+                autoClose={500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     )
 }
