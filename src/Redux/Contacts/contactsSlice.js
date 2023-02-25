@@ -7,15 +7,6 @@ import {
   toggleCompleted,
 } from './operations';
 
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-
 const notifyAdd = () => toast("Contact Add");
 const notifyDelete = () => toast("Contact Delete");
 
