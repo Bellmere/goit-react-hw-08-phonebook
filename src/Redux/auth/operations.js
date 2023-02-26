@@ -1,5 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
+
+const notifyFailed = () => toast("Registration Failed");
+const notifyNoSuchUser = () => toast("No Such User");
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -20,6 +24,7 @@ export const register = createAsyncThunk(
         setAuthHeader(res.data.token);
         return res.data;
       } catch (error) {
+        notifyFailed();
         return thunkAPI.rejectWithValue(error.message);
       }
     }
@@ -33,6 +38,7 @@ export const register = createAsyncThunk(
         setAuthHeader(res.data.token);
         return res.data;
       } catch (error) {
+          notifyNoSuchUser();
         return thunkAPI.rejectWithValue(error.message);
       }
     }
