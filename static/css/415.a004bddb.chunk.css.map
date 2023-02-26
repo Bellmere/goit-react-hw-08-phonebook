@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/415.a004bddb.chunk.css","mappings":"AAAA,0BACI,UAAW,CACX,cAAe,CACf,eAAgB,CAChB,iBACJ","sources":["components/NotFound/NotFound.module.css"],"sourcesContent":[".notFound {\n    color: #000;\n    font-size: 40px;\n    line-height: 1.2;\n    text-align: center;\n}"],"names":[],"sourceRoot":""}
