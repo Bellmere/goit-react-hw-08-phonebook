@@ -13,6 +13,7 @@ const HomePage = lazy(() => import('../pages/Home'));
 const RegisterPage = lazy(() => import('../pages/Register'));
 const LoginPage = lazy(() => import('../pages/Login'));
 const ContactsPage = lazy(() => import('../pages/Contacts'));
+const NotFound = lazy(() => import("./NotFound/NotFound"));
 
 
 export const App = () => {
@@ -41,6 +42,7 @@ export const App = () => {
               path="contacts" 
               element={<PrivateRoute component={<ContactsPage />} redirectTo='/login' />}
             />
+            <Route path="*" element={<NotFound />} />
         </Route>
     </Routes>
     );
